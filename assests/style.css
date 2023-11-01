@@ -11,7 +11,42 @@ body{
     background-color: white;
     width: 90%;
     max-width: 600px;
-    margin: 200px auto 0;
+    margin: 100px auto 0;
     border-radius: 10px;
     padding: 30px;
+}
+
+.app h1 {
+    font-size: 25px;
+    color: black;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+    padding-bottom: 30px;
+}
+
+.quiz{
+    padding: 20px 0;
+}
+
+.quiz h2{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn{
+    background-color: rgb(211, 208, 208);
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover{
+    background: black;
+    color: white;
 }
