@@ -6,7 +6,7 @@ var questions = [
         {text:'Alert', correct: true},
         {text:'Number', correct: false},
 ]
-}, {questions: 'The condition of an if/else statement is elcosed within ________:',
+}, {questions: 'The condition of an if/else statement is enclosed within ________:',
 answers: [
     {text:'Parenthesis', correct: true},
     {text:'Curly brackets', correct: false},
@@ -37,7 +37,7 @@ answers: [
 },  
 ];
 
-var questionElement = document.getElementById("question");
+var questionElement = document.getElementById("questions");
 var answerButton = document.getElementById("answer-btns");
 var nextButton = document.getElementById("next-btn");
 
@@ -55,7 +55,7 @@ function showQuestion(){
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.questions;
 
     currentQuestion.answers.forEach(answer => {
         var button = document.createElement("button");
@@ -76,7 +76,7 @@ function resetState(){
     }
 };
 
-function selectionAnswer(e){
+function selectAnswer(e){
     var selectedBtn = e.target;
     var isCorrect = selectedBtn.dataset.correct === "true";
     if(isCorrect){
@@ -96,7 +96,7 @@ function selectionAnswer(e){
 
 function showScore(){
     resetState();
-    questionElement.innerHTML = 'You scored ${score} out of ${questions.length}!';
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play again";
     nextButton.style.display = "block";
 };
