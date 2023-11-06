@@ -62,3 +62,11 @@ margin: 10px auto 0;
 cursor: pointer;
 display: block;
 }
+
+.correct{
+    background-color: rgb(157, 238, 157);
+}
+
+.incorrect{
+    background-color: rgb(238, 148, 148);
+}
