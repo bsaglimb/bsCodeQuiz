@@ -1,3 +1,17 @@
+// DOCUMENT SELECTORS
+var startBtn = document.querySelector('#startBtn');
+var timerEl = document.querySelector('#timer');
+var mainEl = document.querySelector('#main');
+var homeLi = document.querySelector('#home-link');
+var highscoreLi = document.querySelector('#highscore-link')
+
+// GLOBAL VARIABLES
+var timerInterval;
+var secondsLeft;
+var quizSelection;
+var quizQuestions;
+var quizAnswers;
+
 var questions = [
     {questions: 'Commonly used data points DO NOT include:',
     answers: [
@@ -41,8 +55,57 @@ var questionElement = document.getElementById("questions");
 var answerButton = document.getElementById("answer-btns");
 var nextButton = document.getElementById("next-btn");
 
-let currentQuestionIndex = 0;
+let questionIndex = 0;
 let score = 0;
+
+function init() {
+    renderHome();
+}
+
+// NAVBAR //
+homeLi.addEventListener('click', renderHome);
+highscoreLi.addEventListener('click', renderScoreboard);
+
+function initializeTimer() {
+    secondsLeft = 75;
+
+    if (!timerInterval) {
+        timerInterval = setInterval(function () {
+            secondsLeft--;
+            timerEl.textContent = secondsLeft;
+
+            if (secondsLeft <= 0) {
+                endQuiz();
+            }
+        }, 1000);
+    }
+}
+
+function stopTime() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+function resetTimer() {
+    secondsLeft = 0;
+    timerEl.textContent = secondsLeft;
+}
+
+// HOMEPAGE RENDERING //
+function renderHome() {
+    resetQuiz();
+    // check if timer is initialized
+    if (timerInterval) {
+        stopTime();
+    }
+
+    mainEl.textContent = '';
+
+    renderTitle('Coding Quiz Challenge');
+
+    let par = document.createElement('p');
+    par.textContent = 'Select a category below for the language you would like to take a quiz on. You will have 75 seconds to complete all 9 questions! At the end, enter your initials to be added to the leaderboard.';
+}
 
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -53,8 +116,8 @@ function startQuiz(){
 
 function showQuestion(){
     resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
+    let currentQuestion = questions[questionIndex];
+    let questionNo = questionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.questions;
 
     currentQuestion.answers.forEach(answer => {
